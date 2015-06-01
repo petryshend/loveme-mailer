@@ -1,0 +1,2 @@
+python mai.py
+PAUSE
