@@ -3,10 +3,12 @@ from prettytable import PrettyTable
 
 def showGirlsTable(sort_key='id'):
     db = shelve.open('girls-conf')
-    table = PrettyTable(['id', 'name', 'min', 'max', 'letters_sent'])
+    table = PrettyTable(['i', 'id', 'name', 'min', 'max', 'letters_sent'])
+    i = 1
     for key in sorted(db.keys()):
         db[key]['letters_sent'] = db[key].get('letters_sent', 0)
-        table.add_row([key, db[key]['name'], db[key]['min'], db[key]['max'], db[key]['letters_sent']])
+        table.add_row([i, key, db[key]['name'], db[key]['min'], db[key]['max'], db[key]['letters_sent']])
+        i += 1
     print table.get_string(sortby=sort_key)
     db.close()
 
