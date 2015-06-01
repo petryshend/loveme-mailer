@@ -10,6 +10,8 @@ PASSWORD = options['password']
 
 LAST_LOGIN_SORT_ORDER = options['last_login_sort_order']
 
+ONLY_WITH_PHOTOS = options['only_with_photos']
+
 NUMBER_OF_LETTERS_PER_ONE_GIRL = int(options['number_of_letters_per_one_girl'])
 
 GIRLS_WITH_INTRO_LETTERS = shelve.open('girls-conf')

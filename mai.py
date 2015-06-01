@@ -46,8 +46,10 @@ def getMenWithPhotosOnPage():
         man_name = men_links[i]['title']
         man_photo_url = men_photo_links[i]['src']
         man_send_intro_link = men_send_intro_links[i].html
-
-        if hasPhoto(man_photo_url) and hasSendLinkActive(man_send_intro_link):
+        
+        photoQuestion = not ONLY_WITH_PHOTOS or hasPhoto(man_photo_url)
+        
+        if photoQuestion and hasSendLinkActive(man_send_intro_link):
             man = {}
             man[man_id] = {}
             man[man_id]['name'] = man_name

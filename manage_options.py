@@ -18,6 +18,11 @@ def toggleLastLoginSortOrder():
     db = shelve.open('options')
     db['last_login_sort_order'] = not db['last_login_sort_order']
     db.close()
+    
+def toggleOnlyWithPhotos():
+    db = shelve.open('options')
+    db['only_with_photos'] = not db['only_with_photos']
+    db.close()
 
 def changeNumberOfLettersPerGirl(number):
     db = shelve.open('options')
@@ -43,6 +48,7 @@ def printOptions():
     print '[3] Change number of letters per girl'
     print '[4] Change login'
     print '[5] Change password'
+    print '[6] Only with photos'
     print '[0] Exit'
 
 if __name__ == '__main__':
@@ -65,6 +71,8 @@ if __name__ == '__main__':
         elif choise == '5':
             password = raw_input(password)
             changePassword(password)
+        elif choise == '6':
+            toggleOnlyWithPhotos()
         clearTerminal()
         showOptionsTable()
         printOptions()
