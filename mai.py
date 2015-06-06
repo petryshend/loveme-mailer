@@ -1,4 +1,4 @@
-import time, re, sys, imp, wget, os, shelve
+import time, re, sys, imp, wget, os, shelve, datetime
 from compare_img import hasPhoto, removeJunkFiles
 from splinter import Browser
 from mai_conf import *
@@ -193,12 +193,21 @@ if __name__ == '__main__':
         sys.exit('You cant use this mailer for some reason')
 
     loginToSite()
-    page_to_start_send_letters = 2
-    for girl_id in GIRLS_WITH_INTRO_LETTERS.keys():
-        page_to_start_send_letters = sendLettersForGirl(
-            girl_id,
-            NUMBER_OF_LETTERS_PER_ONE_GIRL,
-            page_to_start_send_letters
-            )
+    page_to_start_send_letters = 2    
+        
+    for x in xrange(5):
+        try:
+            for girl_id in GIRLS_WITH_INTRO_LETTERS.keys():
+                page_to_start_send_letters = sendLettersForGirl(
+                    girl_id,
+                    NUMBER_OF_LETTERS_PER_ONE_GIRL,
+                    page_to_start_send_letters
+                    )
+        except Exception, e:
+            f = open('log.txt', 'a')
+            f.write('Error occurred' + str(datetime.datetime.now()) + '\n')
+            f.close()
+            continue
+    
     
     print 'DONE'
